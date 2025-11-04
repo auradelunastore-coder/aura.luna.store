@@ -1,166 +1,63 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts.astro';
+
+// Si hay parámetro dinámico (slug), lo tomamos por si más adelante querés usarlo.
+const { slug } = Astro.params;
 ---
 
 <Layout title="Aura de Luna | Detalles que iluminan">
-  <!-- Sección principal -->
   <section class="hero">
     <h1>Aura de Luna</h1>
     <h2>Detalles que iluminan</h2>
     <p>Creaciones artesanales de productores locales. Cada pieza es única, hecha con amor y dedicada a iluminar tus momentos más especiales.</p>
-    <a href="/productos" class="boton-principal">Ver colección</a>
+    <a href="#colaboracion" class="boton-principal">Ver colección</a>
   </section>
 
-  <!-- Sección de marcas -->
   <section class="marcas">
     <h2>Nuestras marcas amigas</h2>
-    <p>Trabajamos junto a emprendimientos locales que reflejan nuestra pasión por el arte, la naturaleza y la creatividad.</p>
-
     <div class="lista-marcas">
       <div class="marca">
         <h3>🐾 Huellitas Compartidas</h3>
-        <p>Creadores de hogares y accesorios artesanales para mascotas. Su línea de carpintería ofrece casitas y estructuras personalizadas.</p>
-        <a href="/todo en madera" class="boton-secundario">Ver trabajos de carpintería</a>
+        <p>Casitas y estructuras artesanales para mascotas, hechas con materiales nobles y cariño.</p>
       </div>
 
       <div class="marca">
         <h3>🪶 Quique Tecno</h3>
-        <p>Perfumes, indumentaria y accesorios únicos que combinan estilo y energía artesanal.</p>
+        <p>Perfumes, indumentaria y accesorios con estilo artesanal y toques modernos.</p>
       </div>
     </div>
-
-    <p class="proximamente">
-      🌙 Próximamente se sumarán <strong>nuevas marcas</strong> a la familia de Aura de Luna.
-    </p>
+    <p class="proximamente">🌙 Próximamente se sumarán nuevas marcas a la familia de Aura de Luna.</p>
   </section>
 
-  <!-- Sección de contacto -->
-  <section class="contacto">
-    <h2>Contacto</h2>
-    <p>¿Querés conocer más sobre nuestros productos o sumarte como marca colaboradora?</p>
-    <ul>
-      <li>📧 <a href="mailto:auradeluna@gmail.com">auradeluna@gmail.com</a></li>
-      <li>📱 <a href="https://wa.me/549XXXXXXXXXX">WhatsApp</a></li>
-      <li>📸 <a href="https://instagram.com/aura.de.luna" target="_blank">Instagram</a></li>
-    </ul>
-  </section>
-
-  <!-- Nueva sección: Formulario de colaboración -->
-  <section class="colaboracion">
+  <section id="colaboracion" class="colaboracion">
     <h2>¿Querés colaborar con Aura de Luna?</h2>
     <p>Si tenés un emprendimiento artesanal y querés sumarte a nuestra comunidad, completá este breve formulario. Nos pondremos en contacto 💌</p>
 
     <form name="colaboracion" method="POST" data-netlify="true">
       <input type="hidden" name="form-name" value="colaboracion" />
-
-      <label>
-        Nombre del emprendimiento:
-        <input type="text" name="nombre" required />
-      </label>
-
-      <label>
-        Tipo de productos o servicios:
-        <input type="text" name="productos" required />
-      </label>
-
-      <label>
-        Correo electrónico:
-        <input type="email" name="email" required />
-      </label>
-
-      <label>
-        Teléfono o WhatsApp:
-        <input type="text" name="telefono" />
-      </label>
-
-      <label>
-        Contanos brevemente sobre tu proyecto:
-        <textarea name="mensaje" rows="4"></textarea>
-      </label>
-
+      <label>Nombre del emprendimiento:<input type="text" name="nombre" required /></label>
+      <label>Tipo de productos o servicios:<input type="text" name="productos" required /></label>
+      <label>Correo electrónico:<input type="email" name="email" required /></label>
+      <label>Teléfono o WhatsApp:<input type="text" name="telefono" /></label>
+      <label>Contanos brevemente sobre tu proyecto:<textarea name="mensaje" rows="4"></textarea></label>
       <button type="submit">Enviar</button>
     </form>
 
-    <p class="nota">
-      💫 Gracias por querer ser parte de esta red artesanal que ilumina corazones.
-    </p>
+    <p class="nota">💫 Gracias por querer ser parte de esta red artesanal que ilumina corazones.</p>
   </section>
 
-  <!-- Estilos -->
   <style>
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem;
-    }
-    .boton-principal, .boton-secundario {
-      display: inline-block;
-      background: #c3a5d6;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-    .boton-secundario {
-      background: #b794c9;
-      font-size: 0.9rem;
-    }
-    .marcas, .contacto, .colaboracion {
-      padding: 2rem 1rem;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .lista-marcas {
-      display: grid;
-      gap: 1.5rem;
-      margin: 1rem 0;
-    }
-    .marca {
-      background: #f8f5fa;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    form {
-      display: grid;
-      gap: 1rem;
-      margin: 1.5rem auto;
-      text-align: left;
-      background: #faf7fc;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    label {
-      display: flex;
-      flex-direction: column;
-      font-size: 0.9rem;
-    }
-    input, textarea {
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-top: 0.3rem;
-      font-family: inherit;
-    }
-    button {
-      background: #c3a5d6;
-      color: white;
-      border: none;
-      padding: 0.8rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover {
-      background: #b694c7;
-    }
-    .nota {
-      font-style: italic;
-      color: #6b4b8a;
-      margin-top: 1rem;
-    }
+    body { font-family: system-ui, sans-serif; color: #3b2d4a; background-color: #fff; }
+    .hero { text-align: center; padding: 3rem 1rem; }
+    .boton-principal { background: #c3a5d6; color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 1rem; display: inline-block; }
+    .marcas, .colaboracion { padding: 2rem 1rem; text-align: center; max-width: 700px; margin: 0 auto; }
+    .lista-marcas { display: grid; gap: 1.5rem; margin: 1rem 0; }
+    .marca { background: #f8f5fa; border-radius: 10px; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    form { display: grid; gap: 1rem; margin: 1.5rem auto; text-align: left; background: #faf7fc; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    label { display: flex; flex-direction: column; font-size: 0.9rem; }
+    input, textarea { padding: 0.6rem; border: 1px solid #ccc; border-radius: 5px; margin-top: 0.3rem; font-family: inherit; }
+    button { background: #c3a5d6; color: white; border: none; padding: 0.8rem; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #b694c7; }
+    .nota { font-style: italic; color: #6b4b8a; margin-top: 1rem; }
   </style>
 </Layout>
