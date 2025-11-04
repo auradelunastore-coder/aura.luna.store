@@ -1,63 +1,78 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Si hay parámetro dinámico (slug), lo tomamos por si más adelante querés usarlo.
+// Configuración para rutas estáticas (catch-all)
+export async function getStaticPaths() {
+  return [
+    { params: { slug: [] } } // Página principal
+  ];
+}
+
 const { slug } = Astro.params;
 ---
 
 <Layout title="Aura de Luna | Detalles que iluminan">
+
+  <!-- Hero / Encabezado -->
   <section class="hero">
     <h1>Aura de Luna</h1>
     <h2>Detalles que iluminan</h2>
-    <p>Creaciones artesanales de productores locales. Cada pieza es única, hecha con amor y dedicada a iluminar tus momentos más especiales.</p>
-    <a href="#colaboracion" class="boton-principal">Ver colección</a>
+    <p>Creaciones artesanales de productores locales. Cada pieza es única y hecha con amor.</p>
   </section>
 
+  <!-- Sección Marcas -->
   <section class="marcas">
-    <h2>Nuestras marcas amigas</h2>
-    <div class="lista-marcas">
-      <div class="marca">
-        <h3>🐾 Huellitas Compartidas</h3>
-        <p>Casitas y estructuras artesanales para mascotas, hechas con materiales nobles y cariño.</p>
-      </div>
-
-      <div class="marca">
-        <h3>🪶 Quique Tecno</h3>
-        <p>Perfumes, indumentaria y accesorios con estilo artesanal y toques modernos.</p>
-      </div>
-    </div>
-    <p class="proximamente">🌙 Próximamente se sumarán nuevas marcas a la familia de Aura de Luna.</p>
+    <h2>Marcas que ya trabajan con nosotros</h2>
+    <ul>
+      <li>
+        <strong>Huellitas Compartidas</strong> – Casas y accesorios para perros.
+      </li>
+      <li>
+        <strong>Quique Tecno</strong> – Perfumes, indumentaria y ropa.
+      </li>
+    </ul>
+    <p>Próximamente se sumarán nuevas marcas de productos artesanales.</p>
   </section>
 
+  <!-- Colaboración / Formulario -->
   <section id="colaboracion" class="colaboracion">
-    <h2>¿Querés colaborar con Aura de Luna?</h2>
-    <p>Si tenés un emprendimiento artesanal y querés sumarte a nuestra comunidad, completá este breve formulario. Nos pondremos en contacto 💌</p>
-
-    <form name="colaboracion" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="colaboracion" />
-      <label>Nombre del emprendimiento:<input type="text" name="nombre" required /></label>
-      <label>Tipo de productos o servicios:<input type="text" name="productos" required /></label>
-      <label>Correo electrónico:<input type="email" name="email" required /></label>
-      <label>Teléfono o WhatsApp:<input type="text" name="telefono" /></label>
-      <label>Contanos brevemente sobre tu proyecto:<textarea name="mensaje" rows="4"></textarea></label>
+    <h2>¿Querés sumarte y colaborar?</h2>
+    <p>Dejá tus datos y nos pondremos en contacto:</p>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="nombre" placeholder="Nombre" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <textarea name="mensaje" placeholder="Contanos sobre tu marca o productos" required></textarea>
       <button type="submit">Enviar</button>
     </form>
-
-    <p class="nota">💫 Gracias por querer ser parte de esta red artesanal que ilumina corazones.</p>
   </section>
 
+  <!-- Contacto directo -->
+  <section class="contacto">
+    <h2>Contacto</h2>
+    <ul>
+      <li>📧 <a href="mailto:auradeluna@gmail.com">auradeluna@gmail.com</a></li>
+      <li>📱 <a href="https://wa.me/549XXXXXXXXXX" target="_blank">WhatsApp</a></li>
+      <li>📸 <a href="https://instagram.com/aura.de.luna" target="_blank">Instagram @aura.de.luna</a></li>
+    </ul>
+  </section>
+
+  <!-- Estilos -->
   <style>
-    body { font-family: system-ui, sans-serif; color: #3b2d4a; background-color: #fff; }
-    .hero { text-align: center; padding: 3rem 1rem; }
-    .boton-principal { background: #c3a5d6; color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 1rem; display: inline-block; }
-    .marcas, .colaboracion { padding: 2rem 1rem; text-align: center; max-width: 700px; margin: 0 auto; }
-    .lista-marcas { display: grid; gap: 1.5rem; margin: 1rem 0; }
-    .marca { background: #f8f5fa; border-radius: 10px; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    form { display: grid; gap: 1rem; margin: 1.5rem auto; text-align: left; background: #faf7fc; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    label { display: flex; flex-direction: column; font-size: 0.9rem; }
-    input, textarea { padding: 0.6rem; border: 1px solid #ccc; border-radius: 5px; margin-top: 0.3rem; font-family: inherit; }
-    button { background: #c3a5d6; color: white; border: none; padding: 0.8rem; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    button:hover { background: #b694c7; }
-    .nota { font-style: italic; color: #6b4b8a; margin-top: 1rem; }
+    body { font-family: system-ui, sans-serif; margin:0; background:#fffafc; color:#3b2d4a; }
+    section { padding: 2rem 1rem; max-width: 800px; margin: auto; }
+    .hero { text-align:center; }
+    .hero h1 { font-size: 3rem; margin-bottom:0.5rem; }
+    .hero h2 { font-size:1.5rem; margin-bottom:1rem; color:#6b4b8a; }
+    .marcas ul { list-style:none; padding:0; }
+    .marcas li { margin-bottom:0.5rem; }
+    .colaboracion form { display:flex; flex-direction:column; gap:0.5rem; }
+    .colaboracion input, .colaboracion textarea { padding:0.5rem; border-radius:5px; border:1px solid #ccc; width:100%; }
+    .colaboracion button { padding:0.7rem; background:#6b4b8a; color:white; border:none; border-radius:5px; cursor:pointer; }
+    .colaboracion button:hover { background:#54336f; }
+    .contacto ul { list-style:none; padding:0; text-align:center; }
+    .contacto li { margin-bottom:0.5rem; }
+    .contacto a { color:#6b4b8a; text-decoration:none; }
+    .contacto a:hover { text-decoration:underline; }
   </style>
+
 </Layout>
